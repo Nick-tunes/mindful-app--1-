@@ -36,8 +36,8 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <Image
-                src="/placeholder.svg"
+              <img
+                src="/yes.jpg"
                 width={550}
                 height={450}
                 alt="Mindful app screenshot"
@@ -144,7 +144,6 @@ export default function Home() {
       <footer className="w-full border-t py-6">
         <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            © 2025 Mindful. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link

@@ -13,12 +13,20 @@ export default function BreathingExercisePage() {
   const [isActive, setIsActive] = useState(false)
   const [currentPhase, setCurrentPhase] = useState("inhale")
   const [progress, setProgress] = useState(0)
-  const [breathingPattern, setBreathingPattern] = useState({
+  type BreathingPattern = {
+    [key: string]: number;
+    inhale: number;
+    hold1: number;
+    exhale: number;
+    hold2: number;
+  };
+  
+  const [breathingPattern, setBreathingPattern] = useState<BreathingPattern>({
     inhale: 4,
     hold1: 4,
     exhale: 6,
     hold2: 0,
-  })
+  });
 
   const toggleExercise = () => {
     setIsActive(!isActive)
@@ -72,7 +80,7 @@ export default function BreathingExercisePage() {
     return () => clearInterval(timer)
   }, [isActive, breathingPattern])
 
-  const calculateProgress = (phaseIndex, timeInPhase, pattern) => {
+  const calculateProgress = (phaseIndex: number, timeInPhase: number, pattern: BreathingPattern) => {
     const phases = ["inhale", "hold1", "exhale", "hold2"]
     const phaseDurations = phases.map((phase) => pattern[phase])
     const totalDuration = phaseDurations.reduce((sum, duration) => sum + duration, 0)
@@ -108,7 +116,7 @@ export default function BreathingExercisePage() {
     }
   }
 
-  const updateBreathingPattern = (key, value) => {
+  const updateBreathingPattern = (key: string, value: number[]) => {
     setBreathingPattern({
       ...breathingPattern,
       [key]: value[0],

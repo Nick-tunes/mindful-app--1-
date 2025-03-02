@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function DistractionTasksPage() {
-  const [completedTasks, setCompletedTasks] = useState([])
+  const [completedTasks, setCompletedTasks] = useState<string[]>([])
 
   const mentalTasks = [
     "Count backward from 100 by 7s",
@@ -56,12 +56,12 @@ export default function DistractionTasksPage() {
     creative: getRandomTask(creativeTasks),
   })
 
-  function getRandomTask(taskArray) {
+  function getRandomTask(taskArray: string[]) {
     const randomIndex = Math.floor(Math.random() * taskArray.length)
     return taskArray[randomIndex]
   }
 
-  const refreshTask = (category) => {
+  const refreshTask = (category: string) => {
     let taskArray
 
     switch (category) {
@@ -84,9 +84,9 @@ export default function DistractionTasksPage() {
     })
   }
 
-  const markTaskComplete = (category, task) => {
+  const markTaskComplete = (task: string, currentTask: string) => {
     if (!completedTasks.includes(task)) {
-      setCompletedTasks([...completedTasks, task])
+      setCompletedTasks((prevCompletedTasks: string[]) => [...prevCompletedTasks, currentTask])
     }
   }
 

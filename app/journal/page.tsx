@@ -69,11 +69,11 @@ export default function JournalPage() {
     setOpenDialog(false)
   }
 
-  const handleDeleteEntry = (id) => {
+  const handleDeleteEntry = (id: number) => {
     setEntries(entries.filter((entry) => entry.id !== id))
   }
 
-  const updateGratitudeItem = (index, value) => {
+  const updateGratitudeItem = (index: number, value: string) => {
     const updatedGratitudes = [...newEntry.gratefulFor]
     updatedGratitudes[index] = value
     setNewEntry({
@@ -96,7 +96,7 @@ export default function JournalPage() {
               <CardDescription>Record what you're grateful for</CardDescription>
             </CardHeader>
             <CardContent>
-              <Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border" />
+              <Calendar mode="single" selected={date} onSelect={(day: Date | undefined) => setDate(day!)} className="rounded-md border" />
             </CardContent>
             <CardFooter>
               <Dialog open={openDialog} onOpenChange={setOpenDialog}>
@@ -126,7 +126,7 @@ export default function JournalPage() {
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                          <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+                          <Calendar mode="single" selected={date} onSelect={(day: Date | undefined) => setDate(day!)} initialFocus />
                         </PopoverContent>
                       </Popover>
                     </div>
@@ -233,7 +233,7 @@ export default function JournalPage() {
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                          <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+                          <Calendar mode="single" selected={date} onSelect={(day: Date | undefined) => setDate(day!)} initialFocus />
                         </PopoverContent>
                       </Popover>
                     </div>
